@@ -9,10 +9,11 @@ def __get_article_info(url, title, book_name):
     :return:
     """
     response = requests.get(url)
+    response.encoding = "GBK"
+
     from bs4 import BeautifulSoup
 
     soup = BeautifulSoup(response.text, 'html.parser')
-
     content = soup.find('div', id='content')
     content_text = str(content)
 
@@ -44,6 +45,22 @@ def __get_article_info(url, title, book_name):
     print("%s 抓取成功" % title)
 
 
+def retry(callback, num=3):
+    """
+    重试函数
+    :param callback:
+    :param num:
+    :return:
+    """
+    for index in range(num):
+        try:
+            callback()
+            return
+        except:
+            print(f"重试第 {index}次")
+            continue
+
+
 def spider_book(book_id):
     """
     抓取指定 book_id 的书籍 \n
@@ -60,10 +77,14 @@ def spider_book(book_id):
     book_name = info.h1.text
 
     dl_children = soup.find('dl').children
+
     flag = False
+    continue_ = False
     for child in dl_children:
         if child.name == "center" or flag:
             flag = True
             a = child.a
             if a is not None and a.name == "a":
-                __get_article_info(baseURL + a["href"], a.text, book_name)
+                if a.text == "第二百七十八章 三颗弹头！" or  continue_:
+                    continue_ and retry((lambda: __get_article_info(baseURL + a["href"], a.text, book_name)))
+                    continue_ = True
