@@ -85,6 +85,6 @@ def spider_book(book_id):
             flag = True
             a = child.a
             if a is not None and a.name == "a":
-                if a.text == "第二百七十八章 三颗弹头！" or  continue_:
+                if a.text == "第3010章 异变骤起" or continue_:
                     continue_ and retry((lambda: __get_article_info(baseURL + a["href"], a.text, book_name)))
                     continue_ = True
