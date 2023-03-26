@@ -29,6 +29,20 @@ class MultiProcess:
         for worker in self.workerQueue:
             worker.join()
 
+    def success(self):
+        """
+        执行成功的回调函数
+        :return:
+        """
+        pass
+
+    def failure(self):
+        """
+        失败执行回调函数
+        :return:
+        """
+        pass
+
 
 if __name__ == "__main__":
     pass
