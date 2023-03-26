@@ -5,29 +5,30 @@
 import multiprocessing
 
 
-def worker(q):
-    """子进程的任务"""
-    while True:
-        data = q.get()
-        print(f"Processing {data}")
-        # 执行任务的代码
+class MultiProcess:
+    def __int__(self):
+        self.workerQueue = []
+
+    def add(self, worker, args):
+        """
+        追加任务
+        :param args:
+        :param worker:
+        :return:
+        """
+        self.workerQueue.append(multiprocessing.Process(target=worker, args=(args,)))
+
+    def run(self):
+        """
+        执行
+        :return:
+        """
+        for worker in self.workerQueue:
+            worker.start()
+
+        for worker in self.workerQueue:
+            worker.join()
 
 
 if __name__ == "__main__":
-    # 创建一个队列用于进程间通信
-    q = multiprocessing.Queue()
-
-    # 创建子进程并启动
-    p1 = multiprocessing.Process(target=worker, args=(q,))
-    p2 = multiprocessing.Process(target=worker, args=(q,))
-
-    p1.start()
-    p2.start()
-
-    # 往队列中添加任务
-    for i in range(10):
-        q.put(i)
-
-    # 等待子进程执行完成
-    p1.join()
-    p2.join()
+    pass
