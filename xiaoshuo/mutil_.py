@@ -29,20 +29,24 @@ class MultiProcess:
         for worker in self.workerQueue:
             worker.join()
 
-    def success(self):
-        """
-        执行成功的回调函数
-        :return:
-        """
-        pass
-
-    def failure(self):
+    def failure(self, callback):
         """
         失败执行回调函数
         :return:
         """
-        pass
+        self.workerQueue.clear()
+        callback()
+
+    def success(self, callback):
+        """
+        执行成功的回调函数
+        :return:
+        """
+        self.workerQueue.clear()
+        callback()
 
 
 if __name__ == "__main__":
-    pass
+    mp = MultiProcess()
+
+    mp.success((lambda x, y: print(x + y))(1, 2))
