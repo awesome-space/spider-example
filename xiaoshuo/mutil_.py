@@ -6,8 +6,16 @@ import multiprocessing
 
 
 class MultiProcess:
-    def __int__(self):
-        self.workerQueue = []
+    workerQueue = []
+
+    def __int__(self, workerQueue):
+        """
+
+        :param workerQueue:
+        :return:
+        """
+        self.workerQueue = workerQueue
+        pass
 
     def add(self, worker, args):
         """
