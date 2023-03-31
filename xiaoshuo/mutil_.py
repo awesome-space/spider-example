@@ -55,5 +55,7 @@ class MultiProcess:
 
 
 if __name__ == "__main__":
-    mp = MultiProcess()
-    mp.add((lambda x, y: print(x + y))(1, 5), 1)
+    # mp = MultiProcess()
+    # mp.add((lambda x, y: print(x + y))(1, 5), 1)
+    wp = multiprocessing.Process(target=lambda x, y: print(x + y))
+    wp.start()
