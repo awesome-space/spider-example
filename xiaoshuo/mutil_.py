@@ -59,3 +59,6 @@ if __name__ == "__main__":
     # mp.add((lambda x, y: print(x + y))(1, 5), 1)
     wp = multiprocessing.Process(target=lambda x, y: print(x + y))
     wp.start()
+    wp.start()
+    wp.start()
+    wp.start()
