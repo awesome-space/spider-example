@@ -54,11 +54,12 @@ class MultiProcess:
         callback()
 
 
+def test(x, y):
+    print(x, y)
+
+
 if __name__ == "__main__":
     # mp = MultiProcess()
     # mp.add((lambda x, y: print(x + y))(1, 5), 1)
-    wp = multiprocessing.Process(target=lambda x, y: print(x + y))
-    wp.start()
-    wp.start()
-    wp.start()
+    wp = multiprocessing.Process(target=test, args=(1, 5))
     wp.start()
