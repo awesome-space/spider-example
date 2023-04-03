@@ -26,6 +26,9 @@ class MultiProcess:
         """
         self.workerQueue.append(multiprocessing.Process(target=worker, args=(args,)))
 
+    def remove(self):
+        pass
+
     def run(self):
         """
         执行
