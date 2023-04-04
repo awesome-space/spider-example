@@ -24,7 +24,7 @@ class MultiProcess:
         :param worker:
         :return:
         """
-        self.workerQueue.append(multiprocessing.Process(target=worker, args=(args,)))
+        self.workerQueue.append(multiprocessing.Process(target=worker, args=args))
 
     def remove(self):
         pass
@@ -62,7 +62,6 @@ def test(x, y):
 
 
 if __name__ == "__main__":
-    # mp = MultiProcess()
-    # mp.add((lambda x, y: print(x + y))(1, 5), 1)
-    wp = multiprocessing.Process(target=test, args=(1, 5))
-    wp.start()
+    mp = MultiProcess()
+    mp.add(test, (1, 5))
+    mp.run()
