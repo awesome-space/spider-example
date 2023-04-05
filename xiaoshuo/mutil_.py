@@ -56,12 +56,3 @@ class MultiProcess:
         self.workerQueue.clear()
         callback()
 
-
-def test(x, y):
-    print(x, y)
-
-
-if __name__ == "__main__":
-    mp = MultiProcess()
-    mp.add(test, (1, 5))
-    mp.run()
