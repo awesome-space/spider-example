@@ -1,6 +1,8 @@
 import requests
 import logging
 
+import file
+
 
 def __get_article_info(url, title, book_name):
     """
@@ -38,11 +40,7 @@ def __get_article_info(url, title, book_name):
     content_text = '\n'.join([line.lstrip() for line in content_text.split('\n')])
     content_text = '\n'.join([line.lstrip() for line in content_text.split('\n') if 'www.w52bqg.org' not in line])
 
-    # 将结果写入文件
-    with open(f'{book_name}.txt', 'a', encoding='utf-8') as f:
-        f.write(title + "\n")
-        f.write(content_text)
-    print("%s 抓取成功" % title)
+    file.write(book_name, title, content_text)
 
 
 def retry(callback, num=3):
