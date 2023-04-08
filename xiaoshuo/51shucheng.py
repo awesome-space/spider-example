@@ -23,7 +23,7 @@ if __name__ == '__main__':
 
     for index, item in enumerate(subCategories):
         subTitle = subTitles[index].find("h2").text
-        file.write(articleTitle, f"第 {index + 1} 部 {subTitle}", "")
+        file.write(articleTitle, f"{subTitle}", "")
         aList = item.findAll("a")
         for a in aList:
             content = getArticleInfo(a["href"])
