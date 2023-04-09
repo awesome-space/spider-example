@@ -27,4 +27,4 @@ if __name__ == '__main__':
         aList = item.findAll("a")
         for a in aList:
             content = getArticleInfo(a["href"])
-            file.write(articleTitle, f"{a.text}\n", content)
+            file.write(articleTitle, a.text, f"{content}\n")
